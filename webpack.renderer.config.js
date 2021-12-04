@@ -1,3 +1,4 @@
+const path = require('path');
 const rules = require('./webpack.rules');
 
 rules.push({
@@ -9,5 +10,8 @@ module.exports = {
   // Put your normal webpack config below here
   module: {
     rules,
+  },
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
 };
