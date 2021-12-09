@@ -3,6 +3,9 @@ import {app, BrowserWindow} from 'electron';
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     show: false,
+    webPreferences: {
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+    },
   });
   mainWindow.maximize();
   mainWindow.show();
