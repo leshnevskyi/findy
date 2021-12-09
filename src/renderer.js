@@ -28,9 +28,15 @@
 
 import {render} from 'react-dom';
 
+import {Style} from 'components/style';
+import DirentList from './components/DirentList';
+
 const App = () => { 
   return (
-    <></>
+    <>
+      <Style/>
+      <DirentList/>
+    </>
   );
 }
 

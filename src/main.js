@@ -1,4 +1,5 @@
-import {app, BrowserWindow} from 'electron';
+import {app, BrowserWindow, ipcMain} from 'electron';
+import {getDirents} from './lib';
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -33,5 +34,14 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
+  }
+});
+
+ipcMain.on('dirents-request', async event => {
+  try {
+    const dirents = await getDirents();
+    event.reply('dirents-data', dirents);
+  } catch (error) {
+    event.reply('dirents-data', error);
   }
 });
