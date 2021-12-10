@@ -7,15 +7,15 @@ import FolderIcon from 'assets/icons/folder.svg';
 import {useDirectory} from 'components/context';
 
 const DirectoryNavigation = () => {
-  const {goBack, goForward, directory} = useDirectory();
+  const {goBack, goForward, prevPaths, nextPaths, directory} = useDirectory();
 
   return (
     <InputWrapper>
       <ButtonContainer>
-        <Button onClick={goBack}>
+        <Button onClick={goBack} disabled={!prevPaths.length}>
           <Arrow direction='left'/>
         </Button>
-        <Button onClick={goForward}>
+        <Button onClick={goForward} disabled={!nextPaths.length}>
           <Arrow direction='right'/>
         </Button>
       </ButtonContainer>

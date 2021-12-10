@@ -51,6 +51,14 @@ const Button = styled.button`
   display: flex;
   align-items: end;
   justify-content: center;
+
+  &:disabled {
+    --icon-color: ${colors.blueGrey[600]};
+  }
+
+  & svg {
+    stroke-width: var(--stroke-width);
+  }
 `;
 
 const InputWrapper = styled.div`

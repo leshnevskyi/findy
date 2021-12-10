@@ -68,7 +68,11 @@ function useDirectory() {
     setFilters(prevFilters => ({...prevFilters, ...filters}));
   }
 
-  return {directory, changeDirectory, goBack, goForward, filters, applyFilters};
+  return {
+    directory, changeDirectory, 
+    goBack, goForward, prevPaths, nextPaths,
+    filters, applyFilters,
+  };
 }
 
 export {DirectoryProvider, useDirectory};
