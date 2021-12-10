@@ -22,9 +22,9 @@ const Style = createGlobalStyle`
     --icon-color: ${colors.blue[400]};
     --stroke-width: var(--space-50);
 
-    --transition-duration-slow: 0.7s;
-    --transition-duration-normal: 0.3s;
-    --transition-duration-fast: 0.1s;
+    --speed-slow: 0.7s;
+    --speed-normal: 0.3s;
+    --speed-fast: 0.1s;
 
     height: 100%;
     width: 100%;

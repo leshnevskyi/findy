@@ -23,6 +23,7 @@ const DirentList = () => {
         onDoubleClick={dirent.isDirectory ? () => {
           changeDirectory(dirent.path)
         } : undefined}
+        isInteractive={dirent.isDirectory}
       >
         <Data>{dirent.name}</Data>
         <Data>{
