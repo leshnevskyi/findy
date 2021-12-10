@@ -6,10 +6,14 @@ const DirectoryProvider = ({children}) => {
   const [prevPaths, setPrevPaths] = useState([]);
   const [nextPaths, setNextPaths] = useState([]);
   const [path, setPath] = useState();
+  const [filters, setFilters] = useState({});
 
   return (
     <DirectoryContext.Provider value={{
-      path, setPath, prevPaths, setPrevPaths, nextPaths, setNextPaths
+      path, setPath, 
+      prevPaths, setPrevPaths, 
+      nextPaths, setNextPaths,
+      filters, setFilters,
     }}>
       {children}
     </DirectoryContext.Provider>
@@ -18,10 +22,15 @@ const DirectoryProvider = ({children}) => {
 
 function useDirectory() {
   const {
-    path, setPath, prevPaths, setPrevPaths, nextPaths, setNextPaths
+    path, setPath, 
+    prevPaths, setPrevPaths, 
+    nextPaths, setNextPaths,
+    filters, setFilters,
   } = useContext(DirectoryContext);
-  const directory = {path};
-  
+  const directory = {
+    path, name: path?.replace(/^.*(\\|\/|\:)/, '')
+  };
+
   function changeDirectory(path) {
     setPath(prevPath => {
       setPrevPaths(prevPaths => [...prevPaths, prevPath]);
@@ -55,7 +64,11 @@ function useDirectory() {
     });
   }
 
-  return {directory, changeDirectory, goBack, goForward};
+  function applyFilters(filters) {
+    setFilters(prevFilters => ({...prevFilters, ...filters}));
+  }
+
+  return {directory, changeDirectory, goBack, goForward, filters, applyFilters};
 }
 
 export {DirectoryProvider, useDirectory};

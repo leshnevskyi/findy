@@ -5,8 +5,11 @@ import {colors} from 'components/style';
 const Wrapper = styled.table`
   position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   font-size: var(--font-size-400);
   text-align: left;
+  overflow: hidden;
 `;
 
 const Head = styled.thead`
@@ -14,7 +17,18 @@ const Head = styled.thead`
 `;
 
 const Body = styled.tbody`
+  --padding-bottom: var(--space-600);
 
+  padding-bottom: var(--padding-bottom);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  mask-image: linear-gradient(
+    to top, transparent, black var(--padding-bottom)
+  );
 `;
 
 const Row = styled.tr`
@@ -39,6 +53,12 @@ const Row = styled.tr`
 
   & > *:last-child {
     text-align: right;
+  }
+
+  & > *:not(:last-child) {
+    mask-image: linear-gradient(
+      to left, transparent var(--space-200), black var(--space-600)
+    );
   }
 `;
 

@@ -6,7 +6,7 @@ import {useDirectory} from 'components/context';
 
 const DirentList = () => {
   const [dirents, setDirents] = useState(null);
-  const {directory, changeDirectory} = useDirectory();
+  const {directory, changeDirectory, filters} = useDirectory();
 
   useEffect(() => {
     (async () => {
@@ -16,7 +16,14 @@ const DirentList = () => {
   
   if (!dirents) return null;
 
-  const renderedRows = dirents.map(dirent => {
+  const filteredDirents = dirents.filter(dirent => {
+    const patternRegExp = new RegExp(filters.pattern, 'i');
+
+    return patternRegExp.test(dirent.name)
+      || patternRegExp.test(dirent.extension);
+  });
+
+  const renderedRows = filteredDirents.map(dirent => {
     return (
       <Row 
         key={dirent.name} 

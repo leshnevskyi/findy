@@ -1,21 +1,28 @@
 import {InputWrapper, Button} from 'components/Header/components'
-import {Stack, Arrow} from 'components/common';
+import {Arrow, Input} from 'components/common';
+import {ButtonContainer} from './components';
+
+import FolderIcon from 'assets/icons/folder.svg';
 
 import {useDirectory} from 'components/context';
 
 const DirectoryNavigation = () => {
-  const {goBack, goForward} = useDirectory();
+  const {goBack, goForward, directory} = useDirectory();
 
   return (
     <InputWrapper>
-      <Stack gap={50}>
+      <ButtonContainer>
         <Button onClick={goBack}>
           <Arrow direction='left'/>
         </Button>
         <Button onClick={goForward}>
           <Arrow direction='right'/>
         </Button>
-      </Stack>
+      </ButtonContainer>
+      <Input 
+        icon={<FolderIcon/>} 
+        placeholder={directory.name}
+      />
     </InputWrapper>
   );
 }

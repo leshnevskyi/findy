@@ -12,12 +12,13 @@ const Style = createGlobalStyle`
 
     --space-50: 2px;
     --space-100: 1.3rem;
-    --space-200: 2rem;
+    --space-200: 1.8rem;
     --space-300: 3rem;
     --space-400: 4rem;
     --space-600: 6.5rem;
     --space-700: 9rem;
     --space-900: 18rem;
+    --space-1000: 33rem;
 
     --icon-color: ${colors.blue[400]};
     --stroke-width: var(--space-50);
@@ -63,6 +64,12 @@ const Style = createGlobalStyle`
     display: flex;
     flex-direction: column;
     font-size: var(--font-size-400);
+  }
+
+  #root {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
   }
 
   a {

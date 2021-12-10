@@ -59,6 +59,7 @@ const InputWrapper = styled.div`
   position: relative;
   height: 100%;
   display: flex;
+  gap: var(--space-200);
 
   ${styles.bottomBorder}
 `;

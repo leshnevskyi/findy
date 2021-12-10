@@ -30,6 +30,7 @@ import {render} from 'react-dom';
 
 import {Style} from 'components/style';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import DirentList from 'components/DirentList';
 import {DirectoryProvider} from 'components/context';
 
@@ -40,6 +41,7 @@ const App = () => {
       <DirectoryProvider>
         <Header/>
         <DirentList/>
+        <Footer/>
       </DirectoryProvider>
     </>
   );
