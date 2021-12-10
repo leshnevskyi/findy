@@ -12,9 +12,9 @@ const DirentList = () => {
     const updateDirents = async () => {
       setDirents(await api.getDirents(directory.path));
     };
-    
+
     updateDirents();
-    api.watch(directory.path || '.', updateDirents);
+    api.watch(directory.path, updateDirents);
   }, [directory.path]);
   
   if (!dirents) return null;

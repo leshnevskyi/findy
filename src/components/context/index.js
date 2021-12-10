@@ -5,7 +5,7 @@ const DirectoryContext = createContext();
 const DirectoryProvider = ({children}) => {
   const [prevPaths, setPrevPaths] = useState([]);
   const [nextPaths, setNextPaths] = useState([]);
-  const [path, setPath] = useState();
+  const [path, setPath] = useState(api.homedir);
   const [filters, setFilters] = useState({});
 
   return (
@@ -28,7 +28,7 @@ function useDirectory() {
     filters, setFilters,
   } = useContext(DirectoryContext);
   const directory = {
-    path, name: path?.replace(/^.*(\\|\/|\:)/, '')
+    path, name: api.getBasename(path)
   };
 
   function changeDirectory(path) {

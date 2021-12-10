@@ -1,5 +1,5 @@
 import {homedir} from 'os';
-import {statSync, watch} from 'fs';
+import {statSync} from 'fs';
 import {readdir} from 'fs/promises';
 import {join, extname} from 'path';
 

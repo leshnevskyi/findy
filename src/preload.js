@@ -1,5 +1,7 @@
 import {contextBridge, ipcRenderer} from 'electron';
+import {basename} from 'path';
 import {watch} from 'fs';
+import {homedir} from 'os';
 
 contextBridge.exposeInMainWorld('api', {
   async getDirents(path) {
@@ -12,4 +14,6 @@ contextBridge.exposeInMainWorld('api', {
   },
 
   watch,
+  homedir: homedir(),
+  getBasename: basename, 
 });
