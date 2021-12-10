@@ -1,4 +1,5 @@
 import {contextBridge, ipcRenderer} from 'electron';
+import {watch} from 'fs';
 
 contextBridge.exposeInMainWorld('api', {
   async getDirents(path) {
@@ -8,5 +9,7 @@ contextBridge.exposeInMainWorld('api', {
         Array.isArray(reply) ? resolve(reply) : reject(reply);
       });
     });
-  }
+  },
+
+  watch,
 });

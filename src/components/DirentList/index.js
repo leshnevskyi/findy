@@ -9,9 +9,12 @@ const DirentList = () => {
   const {directory, changeDirectory, filters} = useDirectory();
 
   useEffect(() => {
-    (async () => {
+    const updateDirents = async () => {
       setDirents(await api.getDirents(directory.path));
-    })();
+    };
+    
+    updateDirents();
+    api.watch(directory.path || '.', updateDirents);
   }, [directory.path]);
   
   if (!dirents) return null;
