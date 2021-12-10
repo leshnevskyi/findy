@@ -2,21 +2,28 @@ import {useState, useEffect} from 'react';
 
 import {Wrapper, Head, Body, Row, Header, Data} from './components';
 
+import {useDirectory} from 'components/context';
+
 const DirentList = () => {
   const [dirents, setDirents] = useState(null);
-  console.log(dirents);
+  const {directory, changeDirectory} = useDirectory();
 
   useEffect(() => {
     (async () => {
-      setDirents(await api.getDirents());
+      setDirents(await api.getDirents(directory.path));
     })();
-  }, []);
+  }, [directory.path]);
   
   if (!dirents) return null;
 
   const renderedRows = dirents.map(dirent => {
     return (
-      <Row key={dirent.name}>
+      <Row 
+        key={dirent.name} 
+        onDoubleClick={dirent.isDirectory ? () => {
+          changeDirectory(dirent.path)
+        } : undefined}
+      >
         <Data>{dirent.name}</Data>
         <Data>{
           dirent.dateModified.toLocaleString('default', {
@@ -27,20 +34,18 @@ const DirentList = () => {
             minute: 'numeric',
           }
         )}</Data>
-        <Data>{dirent.extension || 'Folder'}</Data>
-        <Data>{dirent.size} KB</Data>
+        <Data>{
+          dirent.extension
+            ? dirent.extension.replace('.', '').toUpperCase() 
+            : dirent.isDirectory ? 'Folder' : 'Unknown'
+        }</Data>
+        <Data>{Math.ceil(dirent.size / 1024)} KB</Data>
       </Row>
     );
   });
 
   return (
     <Wrapper>
-      {/* <Head>
-        <Header title='name'/>
-        <Header title='date modified'/>
-        <Header title='kind'/>
-        <Header title='size'/>
-      </Head> */}
       <Head>
         <Row>
           <Header>Name</Header>

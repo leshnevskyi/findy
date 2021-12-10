@@ -28,3 +28,4 @@ const Heading = styled(Text).attrs(({level, children}) => {
 `;
 
 export {Stack, Text, Heading};
+export {default as Arrow} from './components/Arrow';

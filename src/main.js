@@ -37,9 +37,9 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on('dirents-request', async event => {
+ipcMain.on('dirents-request', async (event, args) => {
   try {
-    const dirents = await getDirents();
+    const dirents = await getDirents(args.path);
     event.reply('dirents-data', dirents);
   } catch (error) {
     event.reply('dirents-data', error);

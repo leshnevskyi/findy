@@ -10,12 +10,12 @@ const Style = createGlobalStyle`
     --font-size-600: 2.6rem;
     --font-size-1000: 27rem;
 
-    --space-50: 0.2rem;
-    --space-100: 1.5rem;
+    --space-50: 2px;
+    --space-100: 1.3rem;
     --space-200: 2rem;
     --space-300: 3rem;
     --space-400: 4rem;
-    --space-600: 7rem;
+    --space-600: 6.5rem;
     --space-700: 9rem;
     --space-900: 18rem;
 
@@ -62,6 +62,7 @@ const Style = createGlobalStyle`
     padding: 0 var(--h-padding);
     display: flex;
     flex-direction: column;
+    font-size: var(--font-size-400);
   }
 
   a {
@@ -73,7 +74,7 @@ const Style = createGlobalStyle`
   }
 
   svg {
-    fill: var(--icon-color);
+    fill: none;
     stroke: var(--icon-color);
     stroke-width: 0;
     transition: var(--transition-duration-normal);

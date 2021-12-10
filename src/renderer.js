@@ -29,13 +29,18 @@
 import {render} from 'react-dom';
 
 import {Style} from 'components/style';
-import DirentList from './components/DirentList';
+import Header from 'components/Header';
+import DirentList from 'components/DirentList';
+import {DirectoryProvider} from 'components/context';
 
 const App = () => { 
   return (
     <>
       <Style/>
-      <DirentList/>
+      <DirectoryProvider>
+        <Header/>
+        <DirentList/>
+      </DirectoryProvider>
     </>
   );
 }
